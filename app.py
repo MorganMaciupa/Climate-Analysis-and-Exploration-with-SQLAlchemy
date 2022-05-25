@@ -6,7 +6,7 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func, desc
 
-engine = create_engine("sqlite:///Resources/hawaii.sqlite")
+engine = create_engine("sqlite:///Resources/hawaii.sqlite", connect_args={'check_same_thread': False})
 
 # reflect an existing database into a new model
 Base = automap_base()
@@ -31,8 +31,8 @@ query_date = dt.date(2017, 8, 23) - dt.timedelta(days=365)
 @app.route("/")
 def homepage(): #List all routes that are available
     return (
-        f"Welcome to Morgan's Climate App API!<br/><br/>"
-        f"Available Routes:<br/><br/>"
+        f"<h1>Welcome to Morgan's Climate App API!</h1><br/>"
+        f"<h2>Available Routes:</h2><br/><br/>"
         f"Return the precipitation data for the last 12 months:<br/>"
         f"/api/v1.0/precipitation<br/><br/>"
         f"Return a lis tof all staitons in the dataset:<br/>"
